@@ -5,12 +5,12 @@ export const Resume = ({ resume }) => {
   const projects = resume.projects;
   const skills = resume.skills;
   return (
-    <div>
-      <div>
-        <h1>
-          {user.firstName} {user.lastNmae}
+    <div className="flex flex-col gap-4 bg-white px-6 py-8 text-black mx-auto w-full max-w-[850px] max-h-[1100px] overflow-hidden">
+      <div className="flex flex-col gap-2">
+        <h1 className="flex justify-center">
+          {user.firstName} {user.lastName}
         </h1>
-        <div>
+        <div className="flex gap-2 justify-center">
           <p>{user.phone}</p>
           <p>|</p>
           <p>{user.email}</p>
@@ -19,9 +19,10 @@ export const Resume = ({ resume }) => {
           <p>|</p>
           <p>{user.github}</p>
         </div>
-        <div>
-          <h2>EDUCATION</h2>
-          <hr />
+      </div>
+      <div className="flex flex-col gap-2">
+        <h2 className="border-b-2 border-black">EDUCATION</h2>
+        <div className="flex flex-col gap-3">
           {edu.map((item) => {
             return (
               <div key={item.id}>
@@ -39,19 +40,20 @@ export const Resume = ({ resume }) => {
             );
           })}
         </div>
-        <div>
-          <h2>EXPERIENCE</h2>
-          <hr />
+      </div>
+      <div className="flex flex-col gap-2">
+        <h2 className="border-b-2 border-black">EXPERIENCE</h2>
+        <div className="flex flex-col gap-3">
           {work.map((item) => {
             return (
-              <div key={item.id}>
-                <div>
+              <div key={item.id} className="flex flex-col">
+                <div className="flex justify-between">
                   <h3>{item.role}</h3>
                   <p>
                     {item.start} - {item.end}
                   </p>
                 </div>
-                <div>
+                <div className="flex justify-between">
                   <p>{item.company}</p>
                   <p>{item.location}</p>
                 </div>
@@ -60,17 +62,18 @@ export const Resume = ({ resume }) => {
             );
           })}
         </div>
-        <div>
-          <h2>PROJECTS</h2>
-          <hr />
+      </div>
+      <div className="flex flex-col gap-2">
+        <h2 className="border-b-2 border-black">PROJECTS</h2>
+        <div className="flex flex-col gap-3">
           {projects.map((item) => {
             return (
-              <div key={item.id}>
-                <div className="flex">
-                  <div>
+              <div key={item.id} className=" flex flex-col gap-1">
+                <div className="flex justify-between">
+                  <div className="flex gap-2">
                     <h4>{item.name}</h4>
                     <p>|</p>
-                    <p>{item.tech(", ")}</p>
+                    <p>{item.tech.join(", ")}</p>
                   </div>
                   <div>
                     <p>
@@ -83,9 +86,10 @@ export const Resume = ({ resume }) => {
             );
           })}
         </div>
-        <div>
-          <h2>TECHNICAL SKILLS</h2>
-          <hr />
+      </div>
+      <div className="flex flex-col gap-2">
+        <h2 className="border-b-2 border-black">TECHNICAL SKILLS</h2>
+        <div className="flex flex-col gap-1">
           <p>Languages: {skills.languages.join(", ")}</p>
           <p>Frameworks: {skills.frameworks.join(", ")}</p>
           <p>Developer Tools: {skills.tools.join(", ")}</p>
