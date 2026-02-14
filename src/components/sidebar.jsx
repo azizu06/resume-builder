@@ -5,10 +5,12 @@ import {
   FolderGit,
   GraduationCap,
   Wrench,
+  PanelLeftClose,
+  PanelLeftOpen,
 } from "lucide-react";
 import { Personal, Education, Work, Projects, Skills } from "./Panels";
 
-export const Sidebar = ({ activePanel, setPanel }) => {
+export const Sidebar = ({ activePanel, setPanel, resume, setResume }) => {
   const panels = {
     personal: Personal,
     education: Education,
@@ -21,8 +23,11 @@ export const Sidebar = ({ activePanel, setPanel }) => {
   const active = "bg-blue-600";
   const Panel = panels[activePanel];
   return (
-    <div className="flex gap-10">
+    <div className="flex border">
       <div className="flex flex-col h-screen border-r border-green-700 pt-10">
+        <button className={`${itemBase}`} onClick={() => setPanel("")}>
+          {Panel ? <PanelLeftOpen /> : <PanelLeftClose />}
+        </button>
         <button
           className={`${itemBase} ${activePanel === "personal" ? active : inactive}`}
           onClick={() => setPanel("personal")}
@@ -54,7 +59,9 @@ export const Sidebar = ({ activePanel, setPanel }) => {
           <Wrench />
         </button>
       </div>
-      <div className="flex flex-col">{Panel && <Panel />}</div>
+      <div className="flex flex-col border items-center p-10">
+        {Panel && <Panel resume={resume} setResume={setResume} />}
+      </div>
     </div>
   );
 };
