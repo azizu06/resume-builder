@@ -1,3 +1,4 @@
+import { SquarePen, CirclePlus, Trash } from "lucide-react";
 import {
   PersonalForm,
   EducationForm,
@@ -5,10 +6,11 @@ import {
   ProjectsForm,
   SkillsForm,
 } from "./Forms";
+import { useState } from "react";
 
 export const Personal = ({ resume, setResume }) => {
   const personal = resume.personal;
-  const setPersonal = ({ field, val }) => {
+  const setPersonal = (field, val) => {
     setResume((prev) => ({
       ...prev,
       personal: {
@@ -28,6 +30,7 @@ export const Personal = ({ resume, setResume }) => {
 };
 
 export const Education = ({ resume, setResume }) => {
+  const [selected, setSelected] = useState(0);
   const edu = resume.education;
   const setEdu = (id, field, val) => {
     setResume((prev) => ({
@@ -37,12 +40,38 @@ export const Education = ({ resume, setResume }) => {
       ),
     }));
   };
+  const delEdu = (id) => {
+    setResume((prev) => ({
+      ...prev,
+      education: prev.education.filter((item) => item.id !== id),
+    }));
+  };
   return (
     <div className="flex flex-col gap-5">
-      <div>
+      <div className="flex border w-full justify-between">
         <h2>Education</h2>
+        <CirclePlus className="w-5" />
       </div>
-      <EducationForm edu={edu} setEdu={setEdu} />
+      {selected !== 0 ? (
+        EducationForm(selected)
+      ) : (
+        <div className="flex flex-col gap-5">
+          {edu.map((item) => {
+            return (
+              <div key={item.id} className="flex border justify-between p-3">
+                <p className="flex flex-wrap max-w-[70%] ">{item.school}</p>
+                <div className="flex gap-4 items-center">
+                  <SquarePen
+                    className="w-4"
+                    onClick={() => setSelected(item.id)}
+                  />
+                  <Trash className="w-4" onClick={() => delEdu(item.id)} />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };
