@@ -30,7 +30,7 @@ export const Personal = ({ resume, setResume }) => {
 };
 
 export const Education = ({ resume, setResume }) => {
-  const [selected, setSelected] = useState(0);
+  const [id, setId] = useState(null);
   const edu = resume.education;
   const setEdu = (id, field, val) => {
     setResume((prev) => ({
@@ -46,14 +46,30 @@ export const Education = ({ resume, setResume }) => {
       education: prev.education.filter((item) => item.id !== id),
     }));
   };
+  const addEdu = () => {
+    const newEdu = {
+      id: crypto.randomUUID(),
+      school: "",
+      degree: "",
+      start: "",
+      end: "",
+      location: "",
+    };
+    setResume((prev) => ({
+      ...prev,
+      education: [...prev.education, newEdu],
+    }));
+    setId(newEdu.id);
+  };
+  const eduItem = edu.find((e) => e.id === id);
   return (
     <div className="flex flex-col gap-5">
       <div className="flex border w-full justify-between">
         <h2>Education</h2>
-        <CirclePlus className="w-5" />
+        <CirclePlus className="w-5" onClick={addEdu} />
       </div>
-      {selected !== 0 ? (
-        EducationForm(selected)
+      {id ? (
+        <EducationForm edu={eduItem} setEdu={setEdu} setId={setId} />
       ) : (
         <div className="flex flex-col gap-5">
           {edu.map((item) => {
@@ -61,10 +77,7 @@ export const Education = ({ resume, setResume }) => {
               <div key={item.id} className="flex border justify-between p-3">
                 <p className="flex flex-wrap max-w-[70%] ">{item.school}</p>
                 <div className="flex gap-4 items-center">
-                  <SquarePen
-                    className="w-4"
-                    onClick={() => setSelected(item.id)}
-                  />
+                  <SquarePen className="w-4" onClick={() => setId(item.id)} />
                   <Trash className="w-4" onClick={() => delEdu(item.id)} />
                 </div>
               </div>
@@ -77,6 +90,7 @@ export const Education = ({ resume, setResume }) => {
 };
 
 export const Work = ({ resume, setResume }) => {
+  const [id, setId] = useState(null);
   const work = resume.work;
   const setWork = (id, field, val) => {
     setResume((prev) => ({
@@ -86,17 +100,58 @@ export const Work = ({ resume, setResume }) => {
       ),
     }));
   };
+  const delWork = (id) => {
+    setResume((prev) => ({
+      ...prev,
+      work: prev.work.filter((item) => item.id !== id),
+    }));
+  };
+  const addWork = () => {
+    const newWork = {
+      id: crypto.randomUUID(),
+      company: "",
+      role: "",
+      start: "",
+      end: "",
+      location: "",
+      description: "",
+    };
+    setResume((prev) => ({
+      ...prev,
+      experience: [...prev.experience, newWork],
+    }));
+    setId(newWork.id);
+  };
+  const curWork = work.find((e) => e.id === id);
   return (
     <div className="flex flex-col gap-5">
-      <div>
+      <div className="flex border w-full justify-between">
         <h2>Experience</h2>
+        <CirclePlus className="w-5" onClick={addWork} />
       </div>
-      <WorkForm work={work} setWork={setWork} />
+      {id ? (
+        <WorkForm work={curWork} setWork={setWork} setId={setId} />
+      ) : (
+        <div className="flex flex-col gap-5">
+          {work.map((item) => {
+            return (
+              <div key={item.id} className="flex border justify-between p-3">
+                <p className="flex flex-wrap max-w-[70%] ">{item.company}</p>
+                <div className="flex gap-4 items-center">
+                  <SquarePen className="w-4" onClick={() => setId(item.id)} />
+                  <Trash className="w-4" onClick={() => delWork(item.id)} />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };
 
 export const Projects = ({ resume, setResume }) => {
+  const [id, setId] = useState(null);
   const projects = resume.projects;
   const setProjects = (id, field, val) => {
     setResume((prev) => ({
@@ -106,12 +161,55 @@ export const Projects = ({ resume, setResume }) => {
       ),
     }));
   };
+  const delProject = (id) => {
+    setResume((prev) => ({
+      ...prev,
+      projects: prev.projects.filter((item) => item.id !== id),
+    }));
+  };
+  const addProject = () => {
+    const newProject = {
+      id: crypto.randomUUID(),
+      name: "Gitlytics",
+      description: "",
+      tech: [],
+      start: "",
+      end: "",
+    };
+    setResume((prev) => ({
+      ...prev,
+      projects: [...prev.projects, newProject],
+    }));
+    setId(newProject.id);
+  };
+  const curProject = projects.find((e) => e.id === id);
   return (
     <div className="flex flex-col gap-5">
-      <div>
+      <div className="flex border w-full justify-between">
         <h2>Projects</h2>
+        <CirclePlus className="w-5" onClick={addProject} />
       </div>
-      <ProjectsForm projects={projects} setProjects={setProjects} />
+      {id ? (
+        <ProjectsForm
+          projects={curProject}
+          setProjects={setProjects}
+          setId={setId}
+        />
+      ) : (
+        <div className="flex flex-col gap-5">
+          {projects.map((item) => {
+            return (
+              <div key={item.id} className="flex border justify-between p-3">
+                <p className="flex flex-wrap max-w-[70%] ">{item.name}</p>
+                <div className="flex gap-4 items-center">
+                  <SquarePen className="w-4" onClick={() => setId(item.id)} />
+                  <Trash className="w-4" onClick={() => delProject(item.id)} />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };
