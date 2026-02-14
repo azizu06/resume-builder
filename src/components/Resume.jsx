@@ -5,9 +5,9 @@ export const Resume = ({ resume }) => {
   const projects = resume.projects;
   const skills = resume.skills;
   return (
-    <div className="flex flex-col gap-4 bg-white px-6 py-8 text-black mx-auto w-full max-w-[850px] max-h-[1100px] overflow-hidden">
+    <div className="flex flex-col gap-5 bg-white p-8 text-black mx-auto w-full max-w-[800px] max-h-[1150px] overflow-hidden">
       <div className="flex flex-col gap-2">
-        <h1 className="flex justify-center">
+        <h1 className="flex justify-center text-4xl">
           {user.firstName} {user.lastName}
         </h1>
         <div className="flex gap-2 justify-center">
