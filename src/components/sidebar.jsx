@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   User,
   Briefcase,
@@ -18,13 +17,13 @@ export const Sidebar = ({ activePanel, setPanel, resume, setResume }) => {
     projects: Projects,
     skills: Skills,
   };
-  const itemBase = "flex item-center w-full border p-6";
+  const itemBase = "flex item-center w-full border p-3";
   const inactive = "hover:bg-slate-900";
   const active = "bg-blue-600";
   const Panel = panels[activePanel];
   return (
     <div className="flex border">
-      <div className="flex flex-col h-screen border-r border-green-700 pt-10">
+      <div className="flex flex-col h-screen border-r border-green-700 pt-5">
         <button className={`${itemBase}`} onClick={() => setPanel("")}>
           {Panel ? <PanelLeftOpen /> : <PanelLeftClose />}
         </button>
@@ -59,7 +58,7 @@ export const Sidebar = ({ activePanel, setPanel, resume, setResume }) => {
           <Wrench />
         </button>
       </div>
-      <div className="flex flex-col border items-center p-10">
+      <div className="flex flex-col border min-w-[200px] items-center p-5 bg-blue">
         {Panel && <Panel resume={resume} setResume={setResume} />}
       </div>
     </div>
