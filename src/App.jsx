@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Sidebar } from "./components/Sidebar";
+import { Sidebar } from "./components/sidebar";
 import { defaultResume } from "./const";
 import { Resume } from "./components/Resume";
 
