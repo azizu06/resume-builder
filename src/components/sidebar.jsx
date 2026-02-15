@@ -58,7 +58,7 @@ export const Sidebar = ({ activePanel, setPanel, resume, setResume }) => {
           <Wrench />
         </button>
       </div>
-      <div className="flex flex-col border min-w-[200px] items-center p-5 bg-blue">
+      <div className="flex flex-col border min-w-[250px] items-center p-5 bg-blue">
         {Panel && <Panel resume={resume} setResume={setResume} />}
       </div>
     </div>
