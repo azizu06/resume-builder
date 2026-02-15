@@ -17,7 +17,7 @@ export const PersonalForm = ({ personal, setPersonal }) => {
     }));
   };
   return (
-    <div className="flex min-w-[250px] flex-col gap-5">
+    <div className="flex w-full min-w-0 flex-col gap-5">
       <div className="flex flex-col gap-2">
         <label className="text-xs font-semibold uppercase tracking-wide text-slate-400" htmlFor="firstName">First Name*</label>
         <input
@@ -117,7 +117,7 @@ export const EducationForm = ({ id, setId, edu, setEdu }) => {
         e.preventDefault();
       }}
     >
-      <div className="flex min-w-[250px] flex-col gap-5">
+      <div className="flex w-full min-w-0 flex-col gap-5">
         <div className="flex flex-col gap-2">
           <label className="text-xs font-semibold uppercase tracking-wide text-slate-400" htmlFor="eduName">School Name*</label>
           <input
@@ -222,7 +222,7 @@ export const WorkForm = ({ id, setId, work, setWork }) => {
         e.preventDefault();
       }}
     >
-      <div className="flex min-w-[250px] flex-col gap-5">
+      <div className="flex w-full min-w-0 flex-col gap-5">
         <div className="flex flex-col gap-2">
           <label className="text-xs font-semibold uppercase tracking-wide text-slate-400" htmlFor="workName">Company Name*</label>
           <input
@@ -342,7 +342,7 @@ export const ProjectsForm = ({ id, setId, project, setProject }) => {
         e.preventDefault();
       }}
     >
-      <div className="flex min-w-[250px] flex-col gap-5">
+      <div className="flex w-full min-w-0 flex-col gap-5">
         <div className="flex flex-col gap-2">
           <label className="text-xs font-semibold uppercase tracking-wide text-slate-400" htmlFor="projectName">Project Name*</label>
           <input
@@ -421,7 +421,7 @@ export const SkillsForm = ({ skills, setSkills }) => {
     setDraft((prev) => ({ ...prev, [field]: val }));
   };
   return (
-    <div className="flex min-w-[250px] flex-col gap-5">
+    <div className="flex w-full min-w-0 flex-col gap-5">
       <div className="flex flex-col gap-2">
         <label className="text-xs font-semibold uppercase tracking-wide text-slate-400" htmlFor="languages">Languages*</label>
         <textarea
