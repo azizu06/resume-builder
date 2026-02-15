@@ -262,36 +262,32 @@ export const SkillsForm = ({ skills, setSkills }) => {
       .filter(Boolean);
   };
   return (
-    <form action="">
-      <div className="flex flex-col gap-6 min-w-[250px]">
-        <div className="flex flex-col">
-          <label htmlFor="languages">Languages*</label>
-          <textarea
-            className="w-full min-h-[150px] rounded border"
-            required={true}
-            value={skills.languages.join(", ")}
-            onChange={(e) => setSkills("firstName", strToArray(e.target.value))}
-          />
-        </div>
-        <div className="flex flex-col">
-          <label htmlFor="frameworks">Frameworks & Libraries</label>
-          <textarea
-            className="w-full min-h-[150px] rounded border"
-            value={skills.frameworks.join(", ")}
-            onChange={(e) =>
-              setSkills("frameworks", strToArray(e.target.value))
-            }
-          />
-        </div>
-        <div className="flex flex-col">
-          <label htmlFor="tools">Developer Tools</label>
-          <textarea
-            className="w-full min-h-[150px] rounded border"
-            value={skills.tools.join(", ")}
-            onChange={(e) => setSkills("tools", strToArray(e.target.value))}
-          />
-        </div>
+    <div className="flex flex-col gap-6 min-w-[250px]">
+      <div className="flex flex-col">
+        <label htmlFor="languages">Languages*</label>
+        <textarea
+          className="w-full min-h-[150px] rounded border"
+          required={true}
+          value={skills.languages.join(", ")}
+          onChange={(e) => setSkills("firstName", strToArray(e.target.value))}
+        />
       </div>
-    </form>
+      <div className="flex flex-col">
+        <label htmlFor="frameworks">Frameworks & Libraries</label>
+        <textarea
+          className="w-full min-h-[150px] rounded border"
+          value={skills.frameworks.join(", ")}
+          onChange={(e) => setSkills("frameworks", strToArray(e.target.value))}
+        />
+      </div>
+      <div className="flex flex-col">
+        <label htmlFor="tools">Developer Tools</label>
+        <textarea
+          className="w-full min-h-[150px] rounded border"
+          value={skills.tools.join(", ")}
+          onChange={(e) => setSkills("tools", strToArray(e.target.value))}
+        />
+      </div>
+    </div>
   );
 };
