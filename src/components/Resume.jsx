@@ -5,7 +5,7 @@ export const Resume = ({ resume }) => {
   const projects = resume.projects;
   const skills = resume.skills;
   return (
-    <div className="flex flex-col gap-5 bg-white p-8 text-black mx-auto w-full max-w-[800px] max-h-[1150px] overflow-hidden">
+    <div className="flex flex-col gap-4 bg-white p-8 text-black mx-auto w-full max-w-[850px] max-h-[1200px] overflow-hidden">
       <div className="flex flex-col gap-2">
         <h1 className="flex justify-center text-4xl">
           {user.firstName} {user.lastName}
@@ -57,7 +57,11 @@ export const Resume = ({ resume }) => {
                   <p>{item.company}</p>
                   <p>{item.location}</p>
                 </div>
-                <p>{item.description}</p>
+                <ul className="list-disc pl-5">
+                  {item.description.map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
+                </ul>
               </div>
             );
           })}
@@ -81,7 +85,11 @@ export const Resume = ({ resume }) => {
                     </p>
                   </div>
                 </div>
-                <p>{item.description}</p>
+                <ul className="list-disc pl-5">
+                  {item.description.map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
+                </ul>
               </div>
             );
           })}
