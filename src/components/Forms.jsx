@@ -82,6 +82,7 @@ export const PersonalForm = ({ personal, setPersonal }) => {
 
 export const EducationForm = ({ id, setId, edu, setEdu }) => {
   const [draft, setDraft] = useState({
+    id: edu.id,
     school: edu.school,
     degree: edu.degree,
     start: edu.start,
@@ -169,6 +170,7 @@ export const EducationForm = ({ id, setId, edu, setEdu }) => {
 
 export const WorkForm = ({ id, setId, work, setWork }) => {
   const [draft, setDraft] = useState({
+    id: work.id,
     company: work.company,
     role: work.role,
     start: work.start,
@@ -276,6 +278,7 @@ export const WorkForm = ({ id, setId, work, setWork }) => {
 
 export const ProjectsForm = ({ id, setId, project, setProject }) => {
   const [draft, setDraft] = useState({
+    id: project.id,
     name: project.name,
     description: project.description.join(" "),
     tech: project.tech.join(", "),
@@ -293,6 +296,12 @@ export const ProjectsForm = ({ id, setId, project, setProject }) => {
       .split(".")
       .map((s) => s.trim())
       .filter(Boolean);
+  };
+  const updateDraft = (field, val) => {
+    setDraft((prev) => ({
+      ...prev,
+      [field]: val,
+    }));
   };
   const handleSave = () => {
     if (!draft.name || !draft.tech) return;
@@ -324,7 +333,7 @@ export const ProjectsForm = ({ id, setId, project, setProject }) => {
             type="text"
             required={true}
             value={draft.name}
-            onChange={(e) => setDraft(id, "name", e.target.value)}
+            onChange={(e) => updateDraft("name", e.target.value)}
           />
         </div>
         <div className="flex flex-col">
@@ -333,7 +342,7 @@ export const ProjectsForm = ({ id, setId, project, setProject }) => {
             required={true}
             className="w-full min-h-[150px] rounded border"
             value={draft.tech}
-            onChange={(e) => setDraft(e.target.value)}
+            onChange={(e) => updateDraft("tech", e.target.value)}
           />
         </div>
         <div className="flex flex-col">
@@ -341,7 +350,7 @@ export const ProjectsForm = ({ id, setId, project, setProject }) => {
           <input
             type="text"
             value={draft.start}
-            onChange={(e) => setDraft(id, "start", e.target.value)}
+            onChange={(e) => updateDraft("start", e.target.value)}
           />
         </div>
         <div className="flex flex-col">
@@ -350,7 +359,7 @@ export const ProjectsForm = ({ id, setId, project, setProject }) => {
             type="text"
             required={true}
             value={draft.end}
-            onChange={(e) => setDraft(id, "end", e.target.value)}
+            onChange={(e) => updateDraft("end", e.target.value)}
           />
         </div>
         <div className="flex flex-col">
@@ -358,7 +367,7 @@ export const ProjectsForm = ({ id, setId, project, setProject }) => {
           <textarea
             className="w-full min-h-[150px] rounded border"
             value={draft.description}
-            onChange={(e) => setDraft(id, "description", e.target.value)}
+            onChange={(e) => updateDraft("description", e.target.value)}
           />
         </div>
         <button
