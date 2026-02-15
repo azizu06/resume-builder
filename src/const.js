@@ -129,3 +129,31 @@ export const defaultResume = {
     ],
   },
 };
+
+export const defaultEdu = {
+  id: crypto.randomUUID(),
+  school: "",
+  degree: "",
+  start: "",
+  end: "",
+  location: "",
+};
+
+export const defaultWork = {
+  id: crypto.randomUUID(),
+  company: "",
+  role: "",
+  start: "",
+  end: "",
+  location: "",
+  description: [],
+};
+
+export const defaultProjects = {
+  id: crypto.randomUUID(),
+  name: "",
+  description: [],
+  tech: [],
+  start: "",
+  end: "",
+};
