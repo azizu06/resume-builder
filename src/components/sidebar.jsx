@@ -17,13 +17,15 @@ export const Sidebar = ({ activePanel, setPanel, resume, setResume }) => {
     projects: Projects,
     skills: Skills,
   };
-  const itemBase = "flex item-center w-full border p-3";
-  const inactive = "hover:bg-slate-900";
-  const active = "bg-blue-600";
+  const itemBase =
+    "group flex w-full items-center justify-center rounded-xl border border-transparent p-3 text-slate-400 transition-all duration-200 hover:border-slate-700 hover:bg-slate-800/70 hover:text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950";
+  const inactive = "";
+  const active =
+    "border-slate-700 bg-indigo-500/20 text-indigo-300 shadow-[0_0_0_1px_rgba(129,140,248,0.25)]";
   const Panel = panels[activePanel];
   return (
-    <div className="flex border">
-      <div className="flex flex-col h-screen border-r border-green-700 pt-5">
+    <div className="flex h-screen">
+      <div className="flex h-screen w-16 flex-col gap-2 border-r border-slate-800/80 bg-slate-950 px-2 py-4">
         <button className={`${itemBase}`} onClick={() => setPanel("")}>
           {Panel ? <PanelLeftOpen /> : <PanelLeftClose />}
         </button>
@@ -58,7 +60,9 @@ export const Sidebar = ({ activePanel, setPanel, resume, setResume }) => {
           <Wrench />
         </button>
       </div>
-      <div className="flex flex-col border min-w-[250px] items-center p-5 bg-blue">
+      <div
+        className={`min-h-0 overflow-hidden transition-all duration-200 ${Panel ? "flex w-[360px] flex-col bg-slate-900/70 p-5" : "w-0 bg-transparent p-0"}`}
+      >
         {Panel && <Panel resume={resume} setResume={setResume} />}
       </div>
     </div>
