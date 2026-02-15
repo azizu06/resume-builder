@@ -85,7 +85,8 @@ export const defaultResume = {
       id: crypto.randomUUID(),
       name: "Simple Paintball",
       description: [
-        "Minecraft server plugin built with Spigot API and Java. Published with 2K+ downloads and 4.5/5 rating.",
+        "Minecraft server plugin built with Spigot API and Java.",
+        "Published with 2K+ downloads and 4/5 rating.",
         "Implemented CI/CD with TravisCI and collaborated with server admins for feature feedback.",
       ],
       tech: ["Java", "Spigot API", "Maven", "TravisCI", "Git"],
