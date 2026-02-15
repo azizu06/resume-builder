@@ -180,6 +180,13 @@ export const WorkForm = ({ id, setId, work, setWork }) => {
       .map((s) => s.trim())
       .filter(Boolean);
   };
+  const handleSave = () => {
+    setWork(id, {
+      ...draft,
+      description: descToArray(draft.description),
+    });
+    setId(null);
+  };
   return (
     <form
       onSubmit={(e) => {
@@ -243,12 +250,7 @@ export const WorkForm = ({ id, setId, work, setWork }) => {
         <button
           className="flex justify-center gap-2"
           type="submit"
-          onClick={() =>
-            setWork(id, {
-              ...draft,
-              description: descToArray(draft.description),
-            })
-          }
+          onClick={handleSave}
         >
           <Save className="w-4" /> <span>Save</span>
         </button>
@@ -277,12 +279,13 @@ export const ProjectsForm = ({ id, setId, project, setProject }) => {
       .map((s) => s.trim())
       .filter(Boolean);
   };
-  const handleSubmit = () => {
-    setProject((prev) => ({
-      ...prev,
+  const handleSave = () => {
+    setProject(id, {
+      ...draft,
       description: descToArray(draft.description),
       tech: skillsToArray(draft.tech),
-    }));
+    });
+    setId(null);
   };
   return (
     <form
@@ -338,13 +341,7 @@ export const ProjectsForm = ({ id, setId, project, setProject }) => {
         <button
           className="flex justify-center gap-2"
           type="submit"
-          onClick={() =>
-            setProject(id, {
-              ...draft,
-              description: descToArray(draft.description),
-              tech: skillsToArray(draft.tech),
-            })
-          }
+          onClick={handleSave}
         >
           <Save className="w-4" /> <span>Save</span>
         </button>
