@@ -7,6 +7,7 @@ import {
   SkillsForm,
 } from "./Forms";
 import { useState } from "react";
+import { defaultEdu, defaultWork, defaultProjects } from "../const";
 
 export const Personal = ({ resume, setResume }) => {
   const personal = resume.personal;
@@ -46,26 +47,17 @@ export const Education = ({ resume, setResume }) => {
       education: prev.education.filter((item) => item.id !== id),
     }));
   };
-  const addEdu = () => {
-    const newEdu = {
-      id: crypto.randomUUID(),
-      school: "",
-      degree: "",
-      start: "",
-      end: "",
-      location: "",
-    };
+  const addEdu = (val) => {
     setResume((prev) => ({
       ...prev,
-      education: [...prev.education, newEdu],
+      education: [...prev.education, val],
     }));
-    setId(newEdu.id);
   };
   const handleClose = () => {
     setId(null);
     resetKey((k) => k + 1);
   };
-  const eduItem = edu.find((e) => e.id === id);
+  const eduItem = edu.find((e) => e.id === id) ?? defaultEdu;
   return (
     <div className="flex flex-col gap-5">
       <div className="flex border w-full justify-between">
@@ -73,14 +65,14 @@ export const Education = ({ resume, setResume }) => {
         {id ? (
           <SquareX className="w-5" onClick={handleClose} />
         ) : (
-          <CirclePlus className="w-5" onClick={addEdu} />
+          <CirclePlus className="w-5" onClick={() => setId("add")} />
         )}
       </div>
       {id ? (
         <EducationForm
           key={key}
           edu={eduItem}
-          setEdu={setEdu}
+          setEdu={id ? addEdu : setEdu}
           setId={setId}
           id={id}
         />
@@ -125,23 +117,13 @@ export const Work = ({ resume, setResume }) => {
       experience: prev.experience.filter((item) => item.id !== id),
     }));
   };
-  const addWork = () => {
-    const newWork = {
-      id: crypto.randomUUID(),
-      company: "",
-      role: "",
-      start: "",
-      end: "",
-      location: "",
-      description: "",
-    };
+  const addWork = (val) => {
     setResume((prev) => ({
       ...prev,
-      experience: [...prev.experience, newWork],
+      experience: [...prev.experience, val],
     }));
-    setId(newWork.id);
   };
-  const curWork = work.find((e) => e.id === id);
+  const curWork = work.find((e) => e.id === id) ?? defaultWork;
   return (
     <div className="flex flex-col gap-5">
       <div className="flex border w-full justify-between">
@@ -149,14 +131,14 @@ export const Work = ({ resume, setResume }) => {
         {id ? (
           <SquareX className="w-5" onClick={handleClose} />
         ) : (
-          <CirclePlus className="w-5" onClick={addWork} />
+          <CirclePlus className="w-5" onClick={() => setId("add")} />
         )}
       </div>
       {id ? (
         <WorkForm
           key={key}
           work={curWork}
-          setWork={setWork}
+          setWork={id === "add" ? addWork : setWork}
           setId={setId}
           id={id}
         />
@@ -201,22 +183,13 @@ export const Projects = ({ resume, setResume }) => {
       projects: prev.projects.filter((item) => item.id !== id),
     }));
   };
-  const addProject = () => {
-    const newProject = {
-      id: crypto.randomUUID(),
-      name: "",
-      description: "",
-      tech: [],
-      start: "",
-      end: "",
-    };
+  const addProject = (val) => {
     setResume((prev) => ({
       ...prev,
-      projects: [...prev.projects, newProject],
+      projects: [...prev.projects, val],
     }));
-    setId(newProject.id);
   };
-  const curProject = projects.find((e) => e.id === id);
+  const curProject = projects.find((e) => e.id === id) ?? defaultProjects;
   return (
     <div className="flex flex-col gap-5">
       <div className="flex border w-full justify-between">
@@ -224,14 +197,14 @@ export const Projects = ({ resume, setResume }) => {
         {id ? (
           <SquareX className="w-5" onClick={handleClose} />
         ) : (
-          <CirclePlus className="w-5" onClick={addProject} />
+          <CirclePlus className="w-5" onClick={() => setId("add")} />
         )}
       </div>
       {id ? (
         <ProjectsForm
           key={key}
           project={curProject}
-          setProject={setProject}
+          setProject={id === "add" ? addProject : setProject}
           setId={setId}
           id={id}
         />
