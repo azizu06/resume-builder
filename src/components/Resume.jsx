@@ -91,9 +91,8 @@ export const Resume = ({ resume }) => {
         <h2 className="border-b-2 border-black">TECHNICAL SKILLS</h2>
         <div className="flex flex-col gap-1">
           <p>Languages: {skills.languages.join(", ")}</p>
-          <p>Frameworks: {skills.frameworks.join(", ")}</p>
+          <p>Frameworks & Libraries: {skills.frameworks.join(", ")}</p>
           <p>Developer Tools: {skills.tools.join(", ")}</p>
-          <p>Libraries: {skills.libraries.join(", ")}</p>
         </div>
       </div>
     </div>
