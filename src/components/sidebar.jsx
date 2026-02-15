@@ -27,7 +27,7 @@ export const Sidebar = ({ activePanel, setPanel, resume, setResume }) => {
   const Panel = panels[activePanel];
   return (
     <div className="flex w-full flex-col sm:h-screen sm:flex-row">
-      <div className="flex w-full items-center gap-2 overflow-x-auto border-b border-slate-800/80 bg-slate-950 p-2 sm:h-screen sm:w-16 sm:flex-col sm:justify-start sm:overflow-visible sm:border-b-0 sm:border-r sm:px-2 sm:py-4">
+      <div className="flex w-full justify-center gap-2 overflow-x-auto border-b border-slate-800/80 bg-slate-950 p-2 sm:h-screen sm:w-16 sm:flex-col sm:justify-start sm:overflow-visible sm:border-b-0 sm:border-r sm:px-2 sm:py-4">
         <button className={`${itemBase}`} onClick={() => setPanel("")}>
           {Panel ? (
             <>
