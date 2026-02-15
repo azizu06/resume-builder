@@ -99,6 +99,9 @@ export const defaultResume = {
       "WordPress",
       "Material-UI",
       "FastAPI",
+      "pandas",
+      "NumPy",
+      "Matplotlib",
     ],
     tools: [
       "Git",
@@ -111,6 +114,5 @@ export const defaultResume = {
       "IntelliJ",
       "Eclipse",
     ],
-    libraries: ["pandas", "NumPy", "Matplotlib"],
   },
 };
