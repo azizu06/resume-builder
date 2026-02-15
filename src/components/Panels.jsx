@@ -1,4 +1,4 @@
-import { SquarePen, CirclePlus, Trash } from "lucide-react";
+import { SquarePen, CirclePlus, Trash, SquareX } from "lucide-react";
 import {
   PersonalForm,
   EducationForm,
@@ -66,10 +66,14 @@ export const Education = ({ resume, setResume }) => {
     <div className="flex flex-col gap-5">
       <div className="flex border w-full justify-between">
         <h2>Education</h2>
-        <CirclePlus className="w-5" onClick={addEdu} />
+        {id ? (
+          <SquareX className="w-5" onClick={() => setId(null)} />
+        ) : (
+          <CirclePlus className="w-5" onClick={addEdu} />
+        )}
       </div>
       {id ? (
-        <EducationForm edu={eduItem} setEdu={setEdu} setId={setId} />
+        <EducationForm edu={eduItem} setEdu={setEdu} setId={setId} id={id} />
       ) : (
         <div className="flex flex-col gap-5">
           {edu.map((item) => {
@@ -91,11 +95,11 @@ export const Education = ({ resume, setResume }) => {
 
 export const Work = ({ resume, setResume }) => {
   const [id, setId] = useState(null);
-  const work = resume.work;
+  const work = resume.experience;
   const setWork = (id, field, val) => {
     setResume((prev) => ({
       ...prev,
-      work: prev.work.map((item) =>
+      experience: prev.experience.map((item) =>
         item.id === id ? { ...item, [field]: val } : item,
       ),
     }));
@@ -103,7 +107,7 @@ export const Work = ({ resume, setResume }) => {
   const delWork = (id) => {
     setResume((prev) => ({
       ...prev,
-      work: prev.work.filter((item) => item.id !== id),
+      experience: prev.experience.filter((item) => item.id !== id),
     }));
   };
   const addWork = () => {
@@ -127,10 +131,14 @@ export const Work = ({ resume, setResume }) => {
     <div className="flex flex-col gap-5">
       <div className="flex border w-full justify-between">
         <h2>Experience</h2>
-        <CirclePlus className="w-5" onClick={addWork} />
+        {id ? (
+          <SquareX className="w-5" onClick={() => setId(null)} />
+        ) : (
+          <CirclePlus className="w-5" onClick={addWork} />
+        )}
       </div>
       {id ? (
-        <WorkForm work={curWork} setWork={setWork} setId={setId} />
+        <WorkForm work={curWork} setWork={setWork} setId={setId} id={id} />
       ) : (
         <div className="flex flex-col gap-5">
           {work.map((item) => {
@@ -153,7 +161,7 @@ export const Work = ({ resume, setResume }) => {
 export const Projects = ({ resume, setResume }) => {
   const [id, setId] = useState(null);
   const projects = resume.projects;
-  const setProjects = (id, field, val) => {
+  const setProject = (id, field, val) => {
     setResume((prev) => ({
       ...prev,
       projects: prev.projects.map((item) =>
@@ -170,7 +178,7 @@ export const Projects = ({ resume, setResume }) => {
   const addProject = () => {
     const newProject = {
       id: crypto.randomUUID(),
-      name: "Gitlytics",
+      name: "",
       description: "",
       tech: [],
       start: "",
@@ -187,13 +195,18 @@ export const Projects = ({ resume, setResume }) => {
     <div className="flex flex-col gap-5">
       <div className="flex border w-full justify-between">
         <h2>Projects</h2>
-        <CirclePlus className="w-5" onClick={addProject} />
+        {id ? (
+          <SquareX className="w-5" onClick={() => setId(null)} />
+        ) : (
+          <CirclePlus className="w-5" onClick={addProject} />
+        )}
       </div>
       {id ? (
         <ProjectsForm
-          projects={curProject}
-          setProjects={setProjects}
+          project={curProject}
+          setProject={setProject}
           setId={setId}
+          id={id}
         />
       ) : (
         <div className="flex flex-col gap-5">
