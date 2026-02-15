@@ -95,11 +95,19 @@ export const EducationForm = ({ id, setId, edu, setEdu }) => {
       [field]: val,
     }));
   };
+  const hanldeSave = () => {
+    if (!draft.school || !draft.degree || !draft.location) return;
+    if (id === "add") {
+      setEdu(draft);
+    } else {
+      setEdu(id, draft);
+    }
+    setId(null);
+  };
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        setId(null);
       }}
     >
       <div className="flex flex-col gap-6 min-w-[250px]">
@@ -150,7 +158,7 @@ export const EducationForm = ({ id, setId, edu, setEdu }) => {
         <button
           className="flex justify-center gap-2"
           type="submit"
-          onClick={() => setEdu(id, draft)}
+          onClick={hanldeSave}
         >
           <Save className="w-4" /> <span>Save</span>
         </button>
@@ -181,17 +189,24 @@ export const WorkForm = ({ id, setId, work, setWork }) => {
       .filter(Boolean);
   };
   const handleSave = () => {
-    setWork(id, {
-      ...draft,
-      description: descToArray(draft.description),
-    });
+    if (!draft.company || !draft.role || !draft.location) return;
+    if (id === "add") {
+      setWork({
+        ...draft,
+        description: descToArray(draft.description),
+      });
+    } else {
+      setWork(id, {
+        ...draft,
+        description: descToArray(draft.description),
+      });
+    }
     setId(null);
   };
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        setId(null);
       }}
     >
       <div className="flex flex-col gap-6 min-w-[250px]">
@@ -280,18 +295,26 @@ export const ProjectsForm = ({ id, setId, project, setProject }) => {
       .filter(Boolean);
   };
   const handleSave = () => {
-    setProject(id, {
-      ...draft,
-      description: descToArray(draft.description),
-      tech: skillsToArray(draft.tech),
-    });
+    if (!draft.name || !draft.tech) return;
+    if (id === "add") {
+      setProject({
+        ...draft,
+        description: descToArray(draft.description),
+        tech: skillsToArray(draft.tech),
+      });
+    } else {
+      setProject(id, {
+        ...draft,
+        description: descToArray(draft.description),
+        tech: skillsToArray(draft.tech),
+      });
+    }
     setId(null);
   };
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        setId(null);
       }}
     >
       <div className="flex flex-col gap-6 min-w-[250px]">
