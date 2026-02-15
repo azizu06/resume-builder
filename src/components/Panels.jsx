@@ -33,7 +33,7 @@ export const Education = ({ resume, setResume }) => {
   const [id, setId] = useState(null);
   const [key, resetKey] = useState(0);
   const edu = resume.education;
-  const setEdu = (id, val) => {
+  const updateEdu = (id, val) => {
     setResume((prev) => ({
       ...prev,
       education: prev.education.map((item) =>
@@ -72,7 +72,7 @@ export const Education = ({ resume, setResume }) => {
         <EducationForm
           key={key}
           edu={eduItem}
-          setEdu={id ? addEdu : setEdu}
+          setEdu={id === "add" ? addEdu : updateEdu}
           setId={setId}
           id={id}
         />
@@ -103,7 +103,7 @@ export const Work = ({ resume, setResume }) => {
     setId(null);
     resetKey((k) => k + 1);
   };
-  const setWork = (id, val) => {
+  const updateWork = (id, val) => {
     setResume((prev) => ({
       ...prev,
       experience: prev.experience.map((item) =>
@@ -138,7 +138,7 @@ export const Work = ({ resume, setResume }) => {
         <WorkForm
           key={key}
           work={curWork}
-          setWork={id === "add" ? addWork : setWork}
+          setWork={id === "add" ? addWork : updateWork}
           setId={setId}
           id={id}
         />
@@ -169,7 +169,7 @@ export const Projects = ({ resume, setResume }) => {
     setId(null);
     resetKey((k) => k + 1);
   };
-  const setProject = (id, val) => {
+  const updateProject = (id, val) => {
     setResume((prev) => ({
       ...prev,
       projects: prev.projects.map((item) =>
@@ -204,7 +204,7 @@ export const Projects = ({ resume, setResume }) => {
         <ProjectsForm
           key={key}
           project={curProject}
-          setProject={id === "add" ? addProject : setProject}
+          setProject={id === "add" ? addProject : updateProject}
           setId={setId}
           id={id}
         />
