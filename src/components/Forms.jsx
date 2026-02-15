@@ -17,61 +17,67 @@ export const PersonalForm = ({ personal, setPersonal }) => {
     }));
   };
   return (
-    <div className="flex flex-col gap-6 min-w-[250px]">
-      <div className="flex flex-col">
-        <label htmlFor="firstName">First Name*</label>
+    <div className="flex min-w-[250px] flex-col gap-5">
+      <div className="flex flex-col gap-2">
+        <label className="text-xs font-semibold uppercase tracking-wide text-slate-400" htmlFor="firstName">First Name*</label>
         <input
+          className="h-11 w-full rounded-xl border border-slate-700 bg-slate-950/70 px-3 text-sm text-slate-100 placeholder:text-slate-500 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
           type="text"
           required={true}
           value={draft.firstName}
           onChange={(e) => updateDraft("firstName", e.target.value)}
         />
       </div>
-      <div className="flex flex-col">
-        <label htmlFor="lastName">Last Name*</label>
+      <div className="flex flex-col gap-2">
+        <label className="text-xs font-semibold uppercase tracking-wide text-slate-400" htmlFor="lastName">Last Name*</label>
         <input
+          className="h-11 w-full rounded-xl border border-slate-700 bg-slate-950/70 px-3 text-sm text-slate-100 placeholder:text-slate-500 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
           type="text"
           required={true}
           value={draft.lastName}
           onChange={(e) => updateDraft("lastName", e.target.value)}
         />
       </div>
-      <div className="flex flex-col">
-        <label htmlFor="phone">Phone Number*</label>
+      <div className="flex flex-col gap-2">
+        <label className="text-xs font-semibold uppercase tracking-wide text-slate-400" htmlFor="phone">Phone Number*</label>
         <input
+          className="h-11 w-full rounded-xl border border-slate-700 bg-slate-950/70 px-3 text-sm text-slate-100 placeholder:text-slate-500 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
           type="tel"
           required={true}
           value={draft.phone}
           onChange={(e) => updateDraft("phone", e.target.value)}
         />
       </div>
-      <div className="flex flex-col">
-        <label htmlFor="email">Email*</label>
+      <div className="flex flex-col gap-2">
+        <label className="text-xs font-semibold uppercase tracking-wide text-slate-400" htmlFor="email">Email*</label>
         <input
+          className="h-11 w-full rounded-xl border border-slate-700 bg-slate-950/70 px-3 text-sm text-slate-100 placeholder:text-slate-500 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
           type="email"
           required={true}
           value={draft.email}
           onChange={(e) => updateDraft("email", e.target.value)}
         />
       </div>
-      <div className="flex flex-col">
-        <label htmlFor="linked">Linkedin</label>
+      <div className="flex flex-col gap-2">
+        <label className="text-xs font-semibold uppercase tracking-wide text-slate-400" htmlFor="linked">Linkedin</label>
         <input
+          className="h-11 w-full rounded-xl border border-slate-700 bg-slate-950/70 px-3 text-sm text-slate-100 placeholder:text-slate-500 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
           type="url"
           value={draft.linkedin}
           onChange={(e) => updateDraft("linkedin", e.target.value)}
         />
       </div>
-      <div className="flex flex-col">
-        <label htmlFor="github">Github</label>
+      <div className="flex flex-col gap-2">
+        <label className="text-xs font-semibold uppercase tracking-wide text-slate-400" htmlFor="github">Github</label>
         <input
+          className="h-11 w-full rounded-xl border border-slate-700 bg-slate-950/70 px-3 text-sm text-slate-100 placeholder:text-slate-500 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
           type="url"
           value={draft.github}
           onChange={(e) => updateDraft("github", e.target.value)}
         />
       </div>
       <button
-        className="flex justify-center gap-2"
+        className="inline-flex items-center justify-center gap-2 rounded-xl border border-indigo-400/30 bg-indigo-500/20 px-4 py-2.5 text-sm font-semibold text-indigo-100 transition hover:border-indigo-300/50 hover:bg-indigo-500/30 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
         onClick={() => setPersonal(draft)}
       >
         <Save className="w-4" /> <span>Save</span>
@@ -111,45 +117,50 @@ export const EducationForm = ({ id, setId, edu, setEdu }) => {
         e.preventDefault();
       }}
     >
-      <div className="flex flex-col gap-6 min-w-[250px]">
-        <div className="flex flex-col">
-          <label htmlFor="eduName">School Name*</label>
+      <div className="flex min-w-[250px] flex-col gap-5">
+        <div className="flex flex-col gap-2">
+          <label className="text-xs font-semibold uppercase tracking-wide text-slate-400" htmlFor="eduName">School Name*</label>
           <input
+            className="h-11 w-full rounded-xl border border-slate-700 bg-slate-950/70 px-3 text-sm text-slate-100 placeholder:text-slate-500 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
             type="text"
             required={true}
             value={draft.school}
             onChange={(e) => updateDraft("school", e.target.value)}
           />
         </div>
-        <div className="flex flex-col">
-          <label htmlFor="degree">Degree*</label>
+        <div className="flex flex-col gap-2">
+          <label className="text-xs font-semibold uppercase tracking-wide text-slate-400" htmlFor="degree">Degree*</label>
           <input
+            className="h-11 w-full rounded-xl border border-slate-700 bg-slate-950/70 px-3 text-sm text-slate-100 placeholder:text-slate-500 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
             type="text"
             required={true}
             value={draft.degree}
             onChange={(e) => updateDraft("degree", e.target.value)}
           />
         </div>
-        <div className="flex flex-col">
-          <label htmlFor="eduLocation">Location*</label>
+        <div className="flex flex-col gap-2">
+          <label className="text-xs font-semibold uppercase tracking-wide text-slate-400" htmlFor="eduLocation">Location*</label>
           <input
+            className="h-11 w-full rounded-xl border border-slate-700 bg-slate-950/70 px-3 text-sm text-slate-100 placeholder:text-slate-500 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
             type="text"
             required={true}
             value={draft.location}
             onChange={(e) => updateDraft("location", e.target.value)}
           />
         </div>
-        <div className="flex flex-col">
-          <label htmlFor="eduStart">Start Date</label>
+        <div className="flex flex-col gap-2">
+          <label className="text-xs font-semibold uppercase tracking-wide text-slate-400" htmlFor="eduStart">Start Date</label>
           <input
+            className="h-11 w-full rounded-xl border border-slate-700 bg-slate-950/70 px-3 text-sm text-slate-100 placeholder:text-slate-500 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
             type="text"
             value={draft.start}
             onChange={(e) => updateDraft("start", e.target.value)}
           />
         </div>
-        <div className="flex flex-col">
-          <label htmlFor="eduEnd">End Date</label>
+        <div className="flex flex-col gap-2">
+          <label className="text-xs font-semibold uppercase tracking-wide text-slate-400" htmlFor="eduEnd">End Date</label>
           <input
+            className="h-11 w-full rounded-xl border border-slate-700 bg-slate-950/70 px-3 text-sm text-slate-100 placeholder:text-slate-500 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
             type="text"
             required={true}
             value={draft.end}
@@ -157,7 +168,7 @@ export const EducationForm = ({ id, setId, edu, setEdu }) => {
           />
         </div>
         <button
-          className="flex justify-center gap-2"
+          className="inline-flex items-center justify-center gap-2 rounded-xl border border-indigo-400/30 bg-indigo-500/20 px-4 py-2.5 text-sm font-semibold text-indigo-100 transition hover:border-indigo-300/50 hover:bg-indigo-500/30 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
           type="submit"
           onClick={hanldeSave}
         >
@@ -211,61 +222,66 @@ export const WorkForm = ({ id, setId, work, setWork }) => {
         e.preventDefault();
       }}
     >
-      <div className="flex flex-col gap-6 min-w-[250px]">
-        <div className="flex flex-col">
-          <label htmlFor="workName">Company Name*</label>
+      <div className="flex min-w-[250px] flex-col gap-5">
+        <div className="flex flex-col gap-2">
+          <label className="text-xs font-semibold uppercase tracking-wide text-slate-400" htmlFor="workName">Company Name*</label>
           <input
+            className="h-11 w-full rounded-xl border border-slate-700 bg-slate-950/70 px-3 text-sm text-slate-100 placeholder:text-slate-500 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
             type="text"
             required={true}
             value={draft.company}
             onChange={(e) => updateDraft("company", e.target.value)}
           />
         </div>
-        <div className="flex flex-col">
-          <label htmlFor="workRole">Job Title*</label>
+        <div className="flex flex-col gap-2">
+          <label className="text-xs font-semibold uppercase tracking-wide text-slate-400" htmlFor="workRole">Job Title*</label>
           <input
+            className="h-11 w-full rounded-xl border border-slate-700 bg-slate-950/70 px-3 text-sm text-slate-100 placeholder:text-slate-500 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
             type="text"
             required={true}
             value={draft.role}
             onChange={(e) => updateDraft("role", e.target.value)}
           />
         </div>
-        <div className="flex flex-col">
-          <label htmlFor="workLo">Location*</label>
+        <div className="flex flex-col gap-2">
+          <label className="text-xs font-semibold uppercase tracking-wide text-slate-400" htmlFor="workLo">Location*</label>
           <input
+            className="h-11 w-full rounded-xl border border-slate-700 bg-slate-950/70 px-3 text-sm text-slate-100 placeholder:text-slate-500 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
             type="text"
             required={true}
             value={draft.location}
             onChange={(e) => updateDraft("location", e.target.value)}
           />
         </div>
-        <div className="flex flex-col">
-          <label htmlFor="workStart">Start Date</label>
+        <div className="flex flex-col gap-2">
+          <label className="text-xs font-semibold uppercase tracking-wide text-slate-400" htmlFor="workStart">Start Date</label>
           <input
+            className="h-11 w-full rounded-xl border border-slate-700 bg-slate-950/70 px-3 text-sm text-slate-100 placeholder:text-slate-500 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
             type="text"
             value={draft.start}
             onChange={(e) => updateDraft("start", e.target.value)}
           />
         </div>
-        <div className="flex flex-col">
-          <label htmlFor="workEnd">End Date</label>
+        <div className="flex flex-col gap-2">
+          <label className="text-xs font-semibold uppercase tracking-wide text-slate-400" htmlFor="workEnd">End Date</label>
           <input
+            className="h-11 w-full rounded-xl border border-slate-700 bg-slate-950/70 px-3 text-sm text-slate-100 placeholder:text-slate-500 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
             type="url"
             required={true}
             value={draft.end}
             onChange={(e) => updateDraft("end", e.target.value)}
           />
         </div>
-        <div className="flex flex-col">
-          <label htmlFor="workDesc">Description</label>
+        <div className="flex flex-col gap-2">
+          <label className="text-xs font-semibold uppercase tracking-wide text-slate-400" htmlFor="workDesc">Description</label>
           <textarea
-            className="w-full min-h-[150px] rounded border"
+            className="max-h-[220px] min-h-[130px] w-full resize-y overflow-y-auto rounded-xl border border-slate-700 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
             value={draft.description}
             onChange={(e) => updateDraft("description", e.target.value)}
           />
         </div>
         <button
-          className="flex justify-center gap-2"
+          className="inline-flex items-center justify-center gap-2 rounded-xl border border-indigo-400/30 bg-indigo-500/20 px-4 py-2.5 text-sm font-semibold text-indigo-100 transition hover:border-indigo-300/50 hover:bg-indigo-500/30 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
           type="submit"
           onClick={handleSave}
         >
@@ -326,52 +342,55 @@ export const ProjectsForm = ({ id, setId, project, setProject }) => {
         e.preventDefault();
       }}
     >
-      <div className="flex flex-col gap-6 min-w-[250px]">
-        <div className="flex flex-col">
-          <label htmlFor="projectName">Project Name*</label>
+      <div className="flex min-w-[250px] flex-col gap-5">
+        <div className="flex flex-col gap-2">
+          <label className="text-xs font-semibold uppercase tracking-wide text-slate-400" htmlFor="projectName">Project Name*</label>
           <input
+            className="h-11 w-full rounded-xl border border-slate-700 bg-slate-950/70 px-3 text-sm text-slate-100 placeholder:text-slate-500 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
             type="text"
             required={true}
             value={draft.name}
             onChange={(e) => updateDraft("name", e.target.value)}
           />
         </div>
-        <div className="flex flex-col">
-          <label htmlFor="techStack">Tech Stack*</label>
+        <div className="flex flex-col gap-2">
+          <label className="text-xs font-semibold uppercase tracking-wide text-slate-400" htmlFor="techStack">Tech Stack*</label>
           <textarea
             required={true}
-            className="w-full min-h-[150px] rounded border"
+            className="max-h-[220px] min-h-[130px] w-full resize-y overflow-y-auto rounded-xl border border-slate-700 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
             value={draft.tech}
             onChange={(e) => updateDraft("tech", e.target.value)}
           />
         </div>
-        <div className="flex flex-col">
-          <label htmlFor="projectStart">Start Date</label>
+        <div className="flex flex-col gap-2">
+          <label className="text-xs font-semibold uppercase tracking-wide text-slate-400" htmlFor="projectStart">Start Date</label>
           <input
+            className="h-11 w-full rounded-xl border border-slate-700 bg-slate-950/70 px-3 text-sm text-slate-100 placeholder:text-slate-500 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
             type="text"
             value={draft.start}
             onChange={(e) => updateDraft("start", e.target.value)}
           />
         </div>
-        <div className="flex flex-col">
-          <label htmlFor="projectEnd">End Date</label>
+        <div className="flex flex-col gap-2">
+          <label className="text-xs font-semibold uppercase tracking-wide text-slate-400" htmlFor="projectEnd">End Date</label>
           <input
+            className="h-11 w-full rounded-xl border border-slate-700 bg-slate-950/70 px-3 text-sm text-slate-100 placeholder:text-slate-500 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
             type="text"
             required={true}
             value={draft.end}
             onChange={(e) => updateDraft("end", e.target.value)}
           />
         </div>
-        <div className="flex flex-col">
-          <label htmlFor="projectDesc">Description</label>
+        <div className="flex flex-col gap-2">
+          <label className="text-xs font-semibold uppercase tracking-wide text-slate-400" htmlFor="projectDesc">Description</label>
           <textarea
-            className="w-full min-h-[150px] rounded border"
+            className="max-h-[220px] min-h-[130px] w-full resize-y overflow-y-auto rounded-xl border border-slate-700 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
             value={draft.description}
             onChange={(e) => updateDraft("description", e.target.value)}
           />
         </div>
         <button
-          className="flex justify-center gap-2"
+          className="inline-flex items-center justify-center gap-2 rounded-xl border border-indigo-400/30 bg-indigo-500/20 px-4 py-2.5 text-sm font-semibold text-indigo-100 transition hover:border-indigo-300/50 hover:bg-indigo-500/30 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
           type="submit"
           onClick={handleSave}
         >
@@ -402,34 +421,34 @@ export const SkillsForm = ({ skills, setSkills }) => {
     setDraft((prev) => ({ ...prev, [field]: val }));
   };
   return (
-    <div className="flex flex-col gap-6 min-w-[250px]">
-      <div className="flex flex-col">
-        <label htmlFor="languages">Languages*</label>
+    <div className="flex min-w-[250px] flex-col gap-5">
+      <div className="flex flex-col gap-2">
+        <label className="text-xs font-semibold uppercase tracking-wide text-slate-400" htmlFor="languages">Languages*</label>
         <textarea
-          className="w-full min-h-[150px] rounded border"
+          className="max-h-[220px] min-h-[130px] w-full resize-y overflow-y-auto rounded-xl border border-slate-700 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
           required={true}
           value={draft.languages}
           onChange={(e) => updateDraft("languages", e.target.value)}
         />
       </div>
-      <div className="flex flex-col">
-        <label htmlFor="frameworks">Frameworks & Libraries</label>
+      <div className="flex flex-col gap-2">
+        <label className="text-xs font-semibold uppercase tracking-wide text-slate-400" htmlFor="frameworks">Frameworks & Libraries</label>
         <textarea
-          className="w-full min-h-[150px] rounded border"
+          className="max-h-[220px] min-h-[130px] w-full resize-y overflow-y-auto rounded-xl border border-slate-700 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
           value={draft.frameworks}
           onChange={(e) => updateDraft("frameworks", e.target.value)}
         />
       </div>
-      <div className="flex flex-col">
-        <label htmlFor="tools">Developer Tools</label>
+      <div className="flex flex-col gap-2">
+        <label className="text-xs font-semibold uppercase tracking-wide text-slate-400" htmlFor="tools">Developer Tools</label>
         <textarea
-          className="w-full min-h-[150px] rounded border"
+          className="max-h-[220px] min-h-[130px] w-full resize-y overflow-y-auto rounded-xl border border-slate-700 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
           value={draft.tools}
           onChange={(e) => updateDraft("tools", e.target.value)}
         />
       </div>
       <button
-        className="flex justify-center gap-2"
+        className="inline-flex items-center justify-center gap-2 rounded-xl border border-indigo-400/30 bg-indigo-500/20 px-4 py-2.5 text-sm font-semibold text-indigo-100 transition hover:border-indigo-300/50 hover:bg-indigo-500/30 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
         onClick={() => setSkills(newSkills)}
       >
         <Save className="w-4" /> <span>Save</span>
