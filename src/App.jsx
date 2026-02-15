@@ -8,8 +8,8 @@ export const App = () => {
   const [activePanel, setActivePanel] = useState("");
 
   return (
-    <div className="flex min-h-screen w-screen border bg-black-700">
-      <aside className="border-r border-blue-700 shrink-0">
+    <div className="flex h-screen w-screen border bg-black-700">
+      <aside className="h-screen border-r border-blue-700 shrink-0 sticky top-0">
         <Sidebar
           activePanel={activePanel}
           setPanel={setActivePanel}
@@ -17,7 +17,7 @@ export const App = () => {
           setResume={setResume}
         />
       </aside>
-      <main className="flex-1 grid place-items-start border border-orange-700 p-10">
+      <main className="flex-1 overflow-y-auto grid place-items-start border border-orange-700 p-10">
         <Resume resume={resume} />
       </main>
     </div>
