@@ -1,4 +1,5 @@
 import { Save } from "lucide-react";
+import { useState } from "react";
 
 export const PersonalForm = ({ personal, setPersonal }) => {
   return (
@@ -190,6 +191,7 @@ export const WorkForm = ({ id, setId, work, setWork }) => {
 };
 
 export const ProjectsForm = ({ id, setId, project, setProject }) => {
+  const [tech, setTech] = useState(project.tech.join(", "));
   const strToArray = (str) => {
     return str
       .split(",")
@@ -218,8 +220,8 @@ export const ProjectsForm = ({ id, setId, project, setProject }) => {
           <textarea
             required={true}
             className="w-full min-h-[150px] rounded border"
-            value={project.tech.join(", ")}
-            onChange={(e) => setProject(id, "tecg", strToArray(e.target.value))}
+            value={tech}
+            onChange={(e) => setTech(e.target.value)}
           />
         </div>
         <div className="flex flex-col">
@@ -247,7 +249,11 @@ export const ProjectsForm = ({ id, setId, project, setProject }) => {
             onChange={(e) => setProject(id, "description", e.target.value)}
           />
         </div>
-        <button className="flex justify-center gap-2" type="submit">
+        <button
+          className="flex justify-center gap-2"
+          type="submit"
+          onClick={() => setProject(id, "tech", strToArray(tech))}
+        >
           <Save className="w-4" /> <span>Save</span>
         </button>
       </div>
@@ -255,11 +261,24 @@ export const ProjectsForm = ({ id, setId, project, setProject }) => {
   );
 };
 export const SkillsForm = ({ skills, setSkills }) => {
+  const [draft, setDraft] = useState({
+    languages: skills.languages.join(", "),
+    frameworks: skills.frameworks.join(", "),
+    tools: skills.tools.join(", "),
+  });
   const strToArray = (str) => {
     return str
       .split(",")
       .map((s) => s.trim())
       .filter(Boolean);
+  };
+  const setAll = () => {
+    setSkills("languages", strToArray(draft.languages));
+    setSkills("frameworks", strToArray(draft.frameworks));
+    setSkills("tools", strToArray(draft.tools));
+  };
+  const updateDraft = (field, val) => {
+    setDraft((prev) => ({ ...prev, [field]: val }));
   };
   return (
     <div className="flex flex-col gap-6 min-w-[250px]">
@@ -268,26 +287,29 @@ export const SkillsForm = ({ skills, setSkills }) => {
         <textarea
           className="w-full min-h-[150px] rounded border"
           required={true}
-          value={skills.languages.join(", ")}
-          onChange={(e) => setSkills("firstName", strToArray(e.target.value))}
+          value={draft.languages}
+          onChange={(e) => updateDraft("languages", e.target.value)}
         />
       </div>
       <div className="flex flex-col">
         <label htmlFor="frameworks">Frameworks & Libraries</label>
         <textarea
           className="w-full min-h-[150px] rounded border"
-          value={skills.frameworks.join(", ")}
-          onChange={(e) => setSkills("frameworks", strToArray(e.target.value))}
+          value={draft.frameworks}
+          onChange={(e) => updateDraft("frameworks", e.target.value)}
         />
       </div>
       <div className="flex flex-col">
         <label htmlFor="tools">Developer Tools</label>
         <textarea
           className="w-full min-h-[150px] rounded border"
-          value={skills.tools.join(", ")}
-          onChange={(e) => setSkills("tools", strToArray(e.target.value))}
+          value={draft.tools}
+          onChange={(e) => updateDraft("tools", e.target.value)}
         />
       </div>
+      <button className="flex justify-center gap-2" onClick={setAll}>
+        <Save className="w-4" /> <span>Save</span>
+      </button>
     </div>
   );
 };
