@@ -10,12 +10,11 @@ import { useState } from "react";
 
 export const Personal = ({ resume, setResume }) => {
   const personal = resume.personal;
-  const setPersonal = (field, val) => {
+  const setPersonal = (val) => {
     setResume((prev) => ({
       ...prev,
       personal: {
-        ...prev.personal,
-        [field]: val,
+        ...val,
       },
     }));
   };
@@ -31,12 +30,13 @@ export const Personal = ({ resume, setResume }) => {
 
 export const Education = ({ resume, setResume }) => {
   const [id, setId] = useState(null);
+  const [key, resetKey] = useState(0);
   const edu = resume.education;
-  const setEdu = (id, field, val) => {
+  const setEdu = (id, val) => {
     setResume((prev) => ({
       ...prev,
       education: prev.education.map((item) =>
-        item.id === id ? { ...item, [field]: val } : item,
+        item.id === id ? { ...item, ...val } : item,
       ),
     }));
   };
@@ -61,19 +61,29 @@ export const Education = ({ resume, setResume }) => {
     }));
     setId(newEdu.id);
   };
+  const handleClose = () => {
+    setId(null);
+    resetKey((k) => k + 1);
+  };
   const eduItem = edu.find((e) => e.id === id);
   return (
     <div className="flex flex-col gap-5">
       <div className="flex border w-full justify-between">
         <h2>Education</h2>
         {id ? (
-          <SquareX className="w-5" onClick={() => setId(null)} />
+          <SquareX className="w-5" onClick={handleClose} />
         ) : (
           <CirclePlus className="w-5" onClick={addEdu} />
         )}
       </div>
       {id ? (
-        <EducationForm edu={eduItem} setEdu={setEdu} setId={setId} id={id} />
+        <EducationForm
+          key={key}
+          edu={eduItem}
+          setEdu={setEdu}
+          setId={setId}
+          id={id}
+        />
       ) : (
         <div className="flex flex-col gap-5">
           {edu.map((item) => {
@@ -95,12 +105,17 @@ export const Education = ({ resume, setResume }) => {
 
 export const Work = ({ resume, setResume }) => {
   const [id, setId] = useState(null);
+  const [key, resetKey] = useState(0);
   const work = resume.experience;
-  const setWork = (id, field, val) => {
+  const handleClose = () => {
+    setId(null);
+    resetKey((k) => k + 1);
+  };
+  const setWork = (id, val) => {
     setResume((prev) => ({
       ...prev,
       experience: prev.experience.map((item) =>
-        item.id === id ? { ...item, [field]: val } : item,
+        item.id === id ? { ...item, ...val } : item,
       ),
     }));
   };
@@ -132,13 +147,19 @@ export const Work = ({ resume, setResume }) => {
       <div className="flex border w-full justify-between">
         <h2>Experience</h2>
         {id ? (
-          <SquareX className="w-5" onClick={() => setId(null)} />
+          <SquareX className="w-5" onClick={handleClose} />
         ) : (
           <CirclePlus className="w-5" onClick={addWork} />
         )}
       </div>
       {id ? (
-        <WorkForm work={curWork} setWork={setWork} setId={setId} id={id} />
+        <WorkForm
+          key={key}
+          work={curWork}
+          setWork={setWork}
+          setId={setId}
+          id={id}
+        />
       ) : (
         <div className="flex flex-col gap-5">
           {work.map((item) => {
@@ -160,12 +181,17 @@ export const Work = ({ resume, setResume }) => {
 
 export const Projects = ({ resume, setResume }) => {
   const [id, setId] = useState(null);
+  const [key, resetKey] = useState(0);
   const projects = resume.projects;
-  const setProject = (id, field, val) => {
+  const handleClose = () => {
+    setId(null);
+    resetKey((k) => k + 1);
+  };
+  const setProject = (id, val) => {
     setResume((prev) => ({
       ...prev,
       projects: prev.projects.map((item) =>
-        item.id === id ? { ...item, [field]: val } : item,
+        item.id === id ? { ...item, ...val } : item,
       ),
     }));
   };
@@ -196,13 +222,14 @@ export const Projects = ({ resume, setResume }) => {
       <div className="flex border w-full justify-between">
         <h2>Projects</h2>
         {id ? (
-          <SquareX className="w-5" onClick={() => setId(null)} />
+          <SquareX className="w-5" onClick={handleClose} />
         ) : (
           <CirclePlus className="w-5" onClick={addProject} />
         )}
       </div>
       {id ? (
         <ProjectsForm
+          key={key}
           project={curProject}
           setProject={setProject}
           setId={setId}
@@ -229,12 +256,11 @@ export const Projects = ({ resume, setResume }) => {
 
 export const Skills = ({ resume, setResume }) => {
   const skills = resume.skills;
-  const setSkills = (field, val) => {
+  const setSkills = (val) => {
     setResume((prev) => ({
       ...prev,
       skills: {
-        ...prev.skills,
-        [field]: val,
+        ...val,
       },
     }));
   };
