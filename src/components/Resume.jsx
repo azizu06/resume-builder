@@ -5,34 +5,39 @@ export const Resume = ({ resume }) => {
   const projects = resume.projects;
   const skills = resume.skills;
   return (
-    <div className="flex flex-col gap-4 bg-white p-8 text-black mx-auto w-full max-w-[850px] max-h-[1250px] overflow-hidden">
+    <div className="h-full w-full max-w-[900px] overflow-y-auto rounded-3xl border border-slate-700/70 bg-slate-800/40 p-4 shadow-2xl shadow-black/40">
+      <div className="mx-auto flex w-full max-w-[850px] flex-col gap-6 rounded-2xl border border-slate-200 bg-white p-8 text-slate-900 shadow-[0_20px_45px_-25px_rgba(15,23,42,0.45)]">
       <div className="flex flex-col gap-2">
-        <h1 className="flex justify-center text-4xl">
+        <h1 className="flex justify-center text-4xl font-bold tracking-tight">
           {user.firstName} {user.lastName}
         </h1>
-        <div className="flex gap-2 justify-center">
-          <p>{user.phone}</p>
-          <p>|</p>
-          <p>{user.email}</p>
-          <p>|</p>
-          <p>{user.linkedin}</p>
-          <p>|</p>
-          <p>{user.github}</p>
+        <div className="flex flex-wrap justify-center gap-2 text-sm text-slate-600">
+          <p className="font-medium">{user.phone}</p>
+          <p className="text-slate-400">|</p>
+          <p className="font-medium">{user.email}</p>
+          <p className="text-slate-400">|</p>
+          <p className="font-medium text-slate-900">{user.linkedin}</p>
+          <p className="text-slate-400">|</p>
+          <p className="font-medium text-slate-900">{user.github}</p>
         </div>
       </div>
       <div className="flex flex-col gap-2">
-        <h2 className="border-b-2 border-black">EDUCATION</h2>
-        <div className="flex flex-col gap-3">
+        <h2 className="border-b border-slate-300 pb-1 text-sm font-semibold tracking-[0.2em] text-slate-600">
+          EDUCATION
+        </h2>
+        <div className="flex flex-col gap-4">
           {edu.map((item) => {
             return (
               <div key={item.id}>
-                <div className="flex justify-between">
-                  <h3>{item.school}</h3>
-                  <p>{item.location}</p>
+                <div className="flex justify-between gap-4">
+                  <h3 className="text-base font-semibold text-slate-900">
+                    {item.school}
+                  </h3>
+                  <p className="text-sm text-slate-600">{item.location}</p>
                 </div>
-                <div className="flex justify-between">
+                <div className="flex justify-between gap-4 text-sm text-slate-700">
                   <p>{item.degree}</p>
-                  <p>
+                  <p className="text-slate-600">
                     {item.start} - {item.end}
                   </p>
                 </div>
@@ -42,22 +47,26 @@ export const Resume = ({ resume }) => {
         </div>
       </div>
       <div className="flex flex-col gap-2">
-        <h2 className="border-b-2 border-black">EXPERIENCE</h2>
-        <div className="flex flex-col gap-3">
+        <h2 className="border-b border-slate-300 pb-1 text-sm font-semibold tracking-[0.2em] text-slate-600">
+          EXPERIENCE
+        </h2>
+        <div className="flex flex-col gap-4">
           {work.map((item) => {
             return (
-              <div key={item.id} className="flex flex-col">
-                <div className="flex justify-between">
-                  <h3>{item.role}</h3>
-                  <p>
+              <div key={item.id} className="flex flex-col gap-1">
+                <div className="flex justify-between gap-4">
+                  <h3 className="text-base font-semibold text-slate-900">
+                    {item.role}
+                  </h3>
+                  <p className="text-sm text-slate-600">
                     {item.start} - {item.end}
                   </p>
                 </div>
-                <div className="flex justify-between">
-                  <p>{item.company}</p>
-                  <p>{item.location}</p>
+                <div className="flex justify-between gap-4 text-sm text-slate-700">
+                  <p className="font-medium">{item.company}</p>
+                  <p className="text-slate-600">{item.location}</p>
                 </div>
-                <ul className="list-disc pl-5">
+                <ul className="list-disc space-y-1 pl-5 text-sm leading-relaxed text-slate-700 marker:text-slate-400">
                   {item.description.map((item, i) => (
                     <li key={i}>{item}</li>
                   ))}
@@ -68,24 +77,28 @@ export const Resume = ({ resume }) => {
         </div>
       </div>
       <div className="flex flex-col gap-2">
-        <h2 className="border-b-2 border-black">PROJECTS</h2>
-        <div className="flex flex-col gap-3">
+        <h2 className="border-b border-slate-300 pb-1 text-sm font-semibold tracking-[0.2em] text-slate-600">
+          PROJECTS
+        </h2>
+        <div className="flex flex-col gap-4">
           {projects.map((item) => {
             return (
-              <div key={item.id} className=" flex flex-col gap-1">
-                <div className="flex justify-between">
-                  <div className="flex gap-2">
-                    <h4>{item.name}</h4>
-                    <p>|</p>
-                    <p>{item.tech.join(", ")}</p>
+              <div key={item.id} className="flex flex-col gap-1">
+                <div className="flex justify-between gap-4">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h4 className="text-base font-semibold text-slate-900">
+                      {item.name}
+                    </h4>
+                    <p className="text-slate-400">|</p>
+                    <p className="text-sm text-slate-700">{item.tech.join(", ")}</p>
                   </div>
                   <div>
-                    <p>
+                    <p className="text-sm text-slate-600">
                       {item.start} - {item.end}
                     </p>
                   </div>
                 </div>
-                <ul className="list-disc pl-5">
+                <ul className="list-disc space-y-1 pl-5 text-sm leading-relaxed text-slate-700 marker:text-slate-400">
                   {item.description.map((item, i) => (
                     <li key={i}>{item}</li>
                   ))}
@@ -96,12 +109,26 @@ export const Resume = ({ resume }) => {
         </div>
       </div>
       <div className="flex flex-col gap-2">
-        <h2 className="border-b-2 border-black">TECHNICAL SKILLS</h2>
-        <div className="flex flex-col gap-1">
-          <p>Languages: {skills.languages.join(", ")}</p>
-          <p>Frameworks & Libraries: {skills.frameworks.join(", ")}</p>
-          <p>Developer Tools: {skills.tools.join(", ")}</p>
+        <h2 className="border-b border-slate-300 pb-1 text-sm font-semibold tracking-[0.2em] text-slate-600">
+          TECHNICAL SKILLS
+        </h2>
+        <div className="flex flex-col gap-1.5 text-sm text-slate-700">
+          <p>
+            <span className="font-semibold text-slate-900">Languages:</span>{" "}
+            {skills.languages.join(", ")}
+          </p>
+          <p>
+            <span className="font-semibold text-slate-900">
+              Frameworks & Libraries:
+            </span>{" "}
+            {skills.frameworks.join(", ")}
+          </p>
+          <p>
+            <span className="font-semibold text-slate-900">Developer Tools:</span>{" "}
+            {skills.tools.join(", ")}
+          </p>
         </div>
+      </div>
       </div>
     </div>
   );
