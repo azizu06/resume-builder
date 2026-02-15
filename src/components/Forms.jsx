@@ -2,6 +2,20 @@ import { Save } from "lucide-react";
 import { useState } from "react";
 
 export const PersonalForm = ({ personal, setPersonal }) => {
+  const [draft, setDraft] = useState({
+    firstName: personal.firstName,
+    lastName: personal.lastName,
+    phone: personal.phone,
+    email: personal.email,
+    linkedin: personal.linkedin,
+    github: personal.github,
+  });
+  const updateDraft = (field, val) => {
+    setDraft((prev) => ({
+      ...prev,
+      [field]: val,
+    }));
+  };
   return (
     <div className="flex flex-col gap-6 min-w-[250px]">
       <div className="flex flex-col">
@@ -9,8 +23,8 @@ export const PersonalForm = ({ personal, setPersonal }) => {
         <input
           type="text"
           required={true}
-          value={personal.firstName}
-          onChange={(e) => setPersonal("firstName", e.target.value)}
+          value={draft.firstName}
+          onChange={(e) => updateDraft("firstName", e.target.value)}
         />
       </div>
       <div className="flex flex-col">
@@ -18,8 +32,8 @@ export const PersonalForm = ({ personal, setPersonal }) => {
         <input
           type="text"
           required={true}
-          value={personal.lastName}
-          onChange={(e) => setPersonal("lastName", e.target.value)}
+          value={draft.lastName}
+          onChange={(e) => updateDraft("lastName", e.target.value)}
         />
       </div>
       <div className="flex flex-col">
@@ -27,8 +41,8 @@ export const PersonalForm = ({ personal, setPersonal }) => {
         <input
           type="tel"
           required={true}
-          value={personal.phone}
-          onChange={(e) => setPersonal("phone", e.target.value)}
+          value={draft.phone}
+          onChange={(e) => updateDraft("phone", e.target.value)}
         />
       </div>
       <div className="flex flex-col">
@@ -36,31 +50,51 @@ export const PersonalForm = ({ personal, setPersonal }) => {
         <input
           type="email"
           required={true}
-          value={personal.email}
-          onChange={(e) => setPersonal("email", e.target.value)}
+          value={draft.email}
+          onChange={(e) => updateDraft("email", e.target.value)}
         />
       </div>
       <div className="flex flex-col">
         <label htmlFor="linked">Linkedin</label>
         <input
           type="url"
-          value={personal.linkedin}
-          onChange={(e) => setPersonal("linkedin", e.target.value)}
+          value={draft.linkedin}
+          onChange={(e) => updateDraft("linkedin", e.target.value)}
         />
       </div>
       <div className="flex flex-col">
         <label htmlFor="github">Github</label>
         <input
           type="url"
-          value={personal.github}
-          onChange={(e) => setPersonal("github", e.target.value)}
+          value={draft.github}
+          onChange={(e) => updateDraft("github", e.target.value)}
         />
       </div>
+      <button
+        className="flex justify-center gap-2"
+        onClick={() => setPersonal(draft)}
+      >
+        <Save className="w-4" /> <span>Save</span>
+      </button>
     </div>
   );
 };
 
 export const EducationForm = ({ id, setId, edu, setEdu }) => {
+  const [draft, setDraft] = useState({
+    school: edu.school,
+    degree: edu.degree,
+    start: edu.start,
+    end: edu.end,
+    location: edu.location,
+    github: edu.github,
+  });
+  const updateDraft = (field, val) => {
+    setDraft((prev) => ({
+      ...prev,
+      [field]: val,
+    }));
+  };
   return (
     <form
       onSubmit={(e) => {
@@ -74,8 +108,8 @@ export const EducationForm = ({ id, setId, edu, setEdu }) => {
           <input
             type="text"
             required={true}
-            value={edu.school}
-            onChange={(e) => setEdu(id, "school", e.target.value)}
+            value={draft.school}
+            onChange={(e) => updateDraft("school", e.target.value)}
           />
         </div>
         <div className="flex flex-col">
@@ -83,8 +117,8 @@ export const EducationForm = ({ id, setId, edu, setEdu }) => {
           <input
             type="text"
             required={true}
-            value={edu.degree}
-            onChange={(e) => setEdu(id, "degree", e.target.value)}
+            value={draft.degree}
+            onChange={(e) => updateDraft("degree", e.target.value)}
           />
         </div>
         <div className="flex flex-col">
@@ -92,16 +126,16 @@ export const EducationForm = ({ id, setId, edu, setEdu }) => {
           <input
             type="text"
             required={true}
-            value={edu.location}
-            onChange={(e) => setEdu(id, "location", e.target.value)}
+            value={draft.location}
+            onChange={(e) => updateDraft("location", e.target.value)}
           />
         </div>
         <div className="flex flex-col">
           <label htmlFor="eduStart">Start Date</label>
           <input
             type="text"
-            value={edu.start}
-            onChange={(e) => setEdu(id, "start", e.target.value)}
+            value={draft.start}
+            onChange={(e) => updateDraft("start", e.target.value)}
           />
         </div>
         <div className="flex flex-col">
@@ -109,11 +143,15 @@ export const EducationForm = ({ id, setId, edu, setEdu }) => {
           <input
             type="text"
             required={true}
-            value={edu.end}
-            onChange={(e) => setEdu(id, "end", e.target.value)}
+            value={draft.end}
+            onChange={(e) => updateDraft("end", e.target.value)}
           />
         </div>
-        <button className="flex justify-center gap-2" type="submit">
+        <button
+          className="flex justify-center gap-2"
+          type="submit"
+          onClick={() => setEdu(id, draft)}
+        >
           <Save className="w-4" /> <span>Save</span>
         </button>
       </div>
@@ -122,6 +160,26 @@ export const EducationForm = ({ id, setId, edu, setEdu }) => {
 };
 
 export const WorkForm = ({ id, setId, work, setWork }) => {
+  const [draft, setDraft] = useState({
+    company: work.company,
+    role: work.role,
+    start: work.start,
+    end: work.end,
+    location: work.location,
+    description: work.description.join(" "),
+  });
+  const updateDraft = (field, val) => {
+    setDraft((prev) => ({
+      ...prev,
+      [field]: val,
+    }));
+  };
+  const descToArray = (str) => {
+    return str
+      .split(".")
+      .map((s) => s.trim())
+      .filter(Boolean);
+  };
   return (
     <form
       onSubmit={(e) => {
@@ -135,8 +193,8 @@ export const WorkForm = ({ id, setId, work, setWork }) => {
           <input
             type="text"
             required={true}
-            value={work.company}
-            onChange={(e) => setWork(id, "company", e.target.value)}
+            value={draft.company}
+            onChange={(e) => updateDraft("company", e.target.value)}
           />
         </div>
         <div className="flex flex-col">
@@ -144,8 +202,8 @@ export const WorkForm = ({ id, setId, work, setWork }) => {
           <input
             type="text"
             required={true}
-            value={work.role}
-            onChange={(e) => setWork(id, "role", e.target.value)}
+            value={draft.role}
+            onChange={(e) => updateDraft("role", e.target.value)}
           />
         </div>
         <div className="flex flex-col">
@@ -153,16 +211,16 @@ export const WorkForm = ({ id, setId, work, setWork }) => {
           <input
             type="text"
             required={true}
-            value={work.location}
-            onChange={(e) => setWork(id, "location", e.target.value)}
+            value={draft.location}
+            onChange={(e) => updateDraft("location", e.target.value)}
           />
         </div>
         <div className="flex flex-col">
           <label htmlFor="workStart">Start Date</label>
           <input
             type="text"
-            value={work.start}
-            onChange={(e) => setWork(id, "start", e.target.value)}
+            value={draft.start}
+            onChange={(e) => updateDraft("start", e.target.value)}
           />
         </div>
         <div className="flex flex-col">
@@ -170,19 +228,28 @@ export const WorkForm = ({ id, setId, work, setWork }) => {
           <input
             type="url"
             required={true}
-            value={work.end}
-            onChange={(e) => setWork(id, "end", e.target.value)}
+            value={draft.end}
+            onChange={(e) => updateDraft("end", e.target.value)}
           />
         </div>
         <div className="flex flex-col">
           <label htmlFor="workDesc">Description</label>
           <textarea
             className="w-full min-h-[150px] rounded border"
-            value={work.description}
-            onChange={(e) => setWork(id, "description", e.target.value)}
+            value={draft.description}
+            onChange={(e) => updateDraft("description", e.target.value)}
           />
         </div>
-        <button className="flex justify-center gap-2" type="submit">
+        <button
+          className="flex justify-center gap-2"
+          type="submit"
+          onClick={() =>
+            setWork(id, {
+              ...draft,
+              description: descToArray(draft.description),
+            })
+          }
+        >
           <Save className="w-4" /> <span>Save</span>
         </button>
       </div>
@@ -191,12 +258,31 @@ export const WorkForm = ({ id, setId, work, setWork }) => {
 };
 
 export const ProjectsForm = ({ id, setId, project, setProject }) => {
-  const [tech, setTech] = useState(project.tech.join(", "));
-  const strToArray = (str) => {
+  const [draft, setDraft] = useState({
+    name: project.name,
+    description: project.description.join(" "),
+    tech: project.tech.join(", "),
+    start: project.start,
+    end: project.end,
+  });
+  const skillsToArray = (str) => {
     return str
       .split(",")
       .map((s) => s.trim())
       .filter(Boolean);
+  };
+  const descToArray = (str) => {
+    return str
+      .split(".")
+      .map((s) => s.trim())
+      .filter(Boolean);
+  };
+  const handleSubmit = () => {
+    setProject((prev) => ({
+      ...prev,
+      description: descToArray(draft.description),
+      tech: skillsToArray(draft.tech),
+    }));
   };
   return (
     <form
@@ -211,8 +297,8 @@ export const ProjectsForm = ({ id, setId, project, setProject }) => {
           <input
             type="text"
             required={true}
-            value={project.name}
-            onChange={(e) => setProject(id, "name", e.target.value)}
+            value={draft.name}
+            onChange={(e) => setDraft(id, "name", e.target.value)}
           />
         </div>
         <div className="flex flex-col">
@@ -220,16 +306,16 @@ export const ProjectsForm = ({ id, setId, project, setProject }) => {
           <textarea
             required={true}
             className="w-full min-h-[150px] rounded border"
-            value={tech}
-            onChange={(e) => setTech(e.target.value)}
+            value={draft.tech}
+            onChange={(e) => setDraft(e.target.value)}
           />
         </div>
         <div className="flex flex-col">
           <label htmlFor="projectStart">Start Date</label>
           <input
             type="text"
-            value={project.start}
-            onChange={(e) => setProject(id, "start", e.target.value)}
+            value={draft.start}
+            onChange={(e) => setDraft(id, "start", e.target.value)}
           />
         </div>
         <div className="flex flex-col">
@@ -237,22 +323,28 @@ export const ProjectsForm = ({ id, setId, project, setProject }) => {
           <input
             type="text"
             required={true}
-            value={project.end}
-            onChange={(e) => setProject(id, "end", e.target.value)}
+            value={draft.end}
+            onChange={(e) => setDraft(id, "end", e.target.value)}
           />
         </div>
         <div className="flex flex-col">
           <label htmlFor="projectDesc">Description</label>
           <textarea
             className="w-full min-h-[150px] rounded border"
-            value={project.description}
-            onChange={(e) => setProject(id, "description", e.target.value)}
+            value={draft.description}
+            onChange={(e) => setDraft(id, "description", e.target.value)}
           />
         </div>
         <button
           className="flex justify-center gap-2"
           type="submit"
-          onClick={() => setProject(id, "tech", strToArray(tech))}
+          onClick={() =>
+            setProject(id, {
+              ...draft,
+              description: descToArray(draft.description),
+              tech: skillsToArray(draft.tech),
+            })
+          }
         >
           <Save className="w-4" /> <span>Save</span>
         </button>
@@ -266,16 +358,16 @@ export const SkillsForm = ({ skills, setSkills }) => {
     frameworks: skills.frameworks.join(", "),
     tools: skills.tools.join(", "),
   });
-  const strToArray = (str) => {
+  const skillsToArray = (str) => {
     return str
       .split(",")
       .map((s) => s.trim())
       .filter(Boolean);
   };
-  const setAll = () => {
-    setSkills("languages", strToArray(draft.languages));
-    setSkills("frameworks", strToArray(draft.frameworks));
-    setSkills("tools", strToArray(draft.tools));
+  const newSkills = {
+    languages: skillsToArray(draft.languages),
+    frameworks: skillsToArray(draft.frameworks),
+    tools: skillsToArray(draft.tools),
   };
   const updateDraft = (field, val) => {
     setDraft((prev) => ({ ...prev, [field]: val }));
@@ -307,7 +399,10 @@ export const SkillsForm = ({ skills, setSkills }) => {
           onChange={(e) => updateDraft("tools", e.target.value)}
         />
       </div>
-      <button className="flex justify-center gap-2" onClick={setAll}>
+      <button
+        className="flex justify-center gap-2"
+        onClick={() => setSkills(newSkills)}
+      >
         <Save className="w-4" /> <span>Save</span>
       </button>
     </div>
